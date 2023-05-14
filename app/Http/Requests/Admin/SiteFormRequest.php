@@ -27,7 +27,10 @@ class SiteFormRequest extends FormRequest
             'description' => ['required', 'min:8'],
             'year' => ['required', 'integer', 'min:4'],
             'client' => ['required', 'min:4'],
-            'published' => ['required', 'boolean']
+            'url_site' => ['nullable'],
+            'published' => ['required', 'boolean'],
+            'github' => ['required', 'boolean'],
+            'category_id' => ['required', 'exists:categories,id']
         ];
     }
 }
