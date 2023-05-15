@@ -19,4 +19,6 @@ Route::get('/', function () {
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('site', \App\Http\Controllers\Admin\SiteController::class)->except(['show']);
+    Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class)->except(['show']);
+    Route::resource('technology', \App\Http\Controllers\Admin\TechnologyController::class)->except(['show']);
 });

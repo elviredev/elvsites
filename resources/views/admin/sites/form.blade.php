@@ -24,12 +24,17 @@
             @include('shared.input', ['class' => 'mt-3', 'label' => 'URL du site', 'name' => 'url_site', 'value' => $site->url_site])
 
             <div class="col row mt-3">
-                @include('shared.checkbox', ['class' => 'col-2 ms-3', 'label' => 'Publié', 'name' => 'published', 'value' => $site->published])
-                @include('shared.checkbox', ['class' => 'col-2', 'label' => 'Github', 'name' => 'github', 'value' => $site->github])
+                @include('shared.checkbox', ['class' => 'col-md-2 col-sm-12 ms-3', 'label' => 'Publié', 'name' => 'published', 'value' => $site->published])
+                @include('shared.checkbox', ['class' => 'col-md-2 col-sm-12 ms-3', 'label' => 'Github', 'name' => 'github', 'value' => $site->github])
+            </div>
+
+            <div class="col-lg-6 col-md-12 row mt-3">
+                @include('shared.select', ['class' => 'd-flex gap-2 ', 'name' => 'category_id', 'label' => 'Catégories', 'value' => $site->category()->pluck('id'), 'options' => $categories])
             </div>
         </div>
+        @include('shared.select-multiple', ['name' => 'technologies', 'label' => 'Technologies', 'value' => $site->technologies()->pluck('id'), 'multiple' => true, 'options' => $technologies])
 
-        @include('shared.select', ['name' => 'category_id', 'label' => 'Catégories', 'value' => $site->category()->pluck('id'), 'options' => $categories])
+
 
         <div>
             <button class="btn btn-primary mt-2">

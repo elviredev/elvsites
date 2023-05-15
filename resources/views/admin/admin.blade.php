@@ -22,6 +22,34 @@
 </head>
 <body>
 
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">ElvSites</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        @php
+            $route = request()->route()->getName();
+        @endphp
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a @class(['nav-link', 'active' => str_contains($route, 'site.')]) href="{{ route('admin.site.index') }}" aria-current="page">Sites Web</a>
+                </li>
+                <li class="nav-item">
+                    <a @class(['nav-link', 'active' => str_contains($route, 'category.')]) href="{{ route('admin.category.index') }}" aria-current="page">Catégories</a>
+                </li>
+                <li class="nav-item">
+                    <a @class(['nav-link', 'active' => str_contains($route, 'technology.')]) href="{{ route('admin.technology.index') }}" aria-current="page">Technologies</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
 <div class="container mt-5">
     @if(session('success'))
         <div class="alert alert-success">
@@ -29,20 +57,26 @@
         </div>
     @endif
 
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <span>Les données n'ont pas été sauvegardées, veuillez corriger les erreurs suivantes :</span>
+            <ul class="my-0">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     @yield('content')
 </div>
-
-
-
-
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
 <script src="https://unpkg.com/htmx.org@1.8.6"></script>
 
 <script>
-    //new TomSelect('select[multiple]', {plugins: {remove_button: {title: 'Supprimer'}}})
+    new TomSelect('select[multiple]', {plugins: {remove_button: {title: 'Supprimer'}}})
 </script>
 </body>
 </html>

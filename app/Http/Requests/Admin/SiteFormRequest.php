@@ -30,7 +30,8 @@ class SiteFormRequest extends FormRequest
             'url_site' => ['nullable'],
             'published' => ['required', 'boolean'],
             'github' => ['required', 'boolean'],
-            'category_id' => ['required', 'exists:categories,id']
+            'category_id' => ['required', 'exists:categories,id'],
+            'technologies' => ['required', 'array', 'exists:technologies,id']
         ];
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SiteFormRequest;
 use App\Models\Category;
 use App\Models\Site;
+use App\Models\Technology;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -20,8 +21,6 @@ class SiteController extends Controller
      */
     public function index()
     {
-
-
         return view('admin.sites.index', [
            'sites' => Site::with('category')->orderBy('created_at', 'desc')->paginate(10)
         ]);
@@ -43,7 +42,8 @@ class SiteController extends Controller
 
         return view('admin.sites.form', [
            'site' => $site,
-            'categories' => Category::select('id', 'name')->get()
+           'categories' => Category::select('id', 'name')->get(),
+           'technologies' => Technology::pluck('name', 'id')
         ]);
     }
 
@@ -55,6 +55,7 @@ class SiteController extends Controller
     public function store(SiteFormRequest $request)
     {
         $site = Site::create($request->validated());
+        $site->technologies()->sync($request->validated('technologies'));
         return to_route('admin.site.index')->with('success', 'Le site a été créé avec succès 🏅');
     }
 
@@ -68,7 +69,8 @@ class SiteController extends Controller
     {
         return view('admin.sites.form', [
            'site' => $site,
-           'categories' => Category::select('id', 'name')->get()
+           'categories' => Category::select('id', 'name')->get(),
+           'technologies' => Technology::pluck('name', 'id')
         ]);
     }
 
@@ -80,6 +82,7 @@ class SiteController extends Controller
      */
     public function update(SiteFormRequest $request, Site $site)
     {
+        $site->technologies()->sync($request->validated('technologies'));
         $site->update($request->validated());
         return to_route('admin.site.index')->with('success', 'Le site a été modifié avec succès 💪');
     }

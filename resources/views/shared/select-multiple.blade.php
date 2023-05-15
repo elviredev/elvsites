@@ -8,10 +8,9 @@
 <div @class(["form-group", $class])>
     <label class="form-label" for="{{ $name }}">{{ $label }}</label>
 
-    <select class="form-select" name="{{ $name }}" id="{{ $name }}" >
-        <option value="">---</option>
-        @foreach($categories as $category)
-            <option @selected(old($name, $site->category_id) == $category->id) value="{{ $category->id }}">{{ $category->name }}</option>
+    <select class="form-select" name="{{ $name }}[]" id="{{ $name }}" multiple >
+        @foreach($technologies as $k => $v)
+            <option @selected($value->contains($k)) value="{{ $k }}">{{ $v }}</option>
         @endforeach
     </select>
 
