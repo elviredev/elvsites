@@ -13,10 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/**
+ * PARTIE CLIENT
+ */
+$idRegex = '[0-9]+';
+$slugRegex = '[0-9a-z\-]+';
 
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/sites', [\App\Http\Controllers\SiteController::class, 'index'])->name('site.index');
+Route::get('/sites/{slug}-{site}', [\App\Http\Controllers\SiteController::class, 'show'])->name('site.show')->where([
+    'slug' => $slugRegex,
+    'site' => $idRegex
+]);
+
+
+/**
+ * PARTIE ADMINISTRATION
+ */
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('site', \App\Http\Controllers\Admin\SiteController::class)->except(['show']);
     Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class)->except(['show']);

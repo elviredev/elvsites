@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Str;
 
 /**
  * @mixin IdeHelperSite
@@ -42,5 +43,15 @@ class Site extends Model
     public function technologies(): BelongsToMany
     {
         return $this->belongsToMany(Technology::class);
+    }
+
+    /**
+     * Générer un slug de manière auto à partir du nom
+     * Utiliser le helper Str de Laravel
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return Str::slug($this->name);
     }
 }
