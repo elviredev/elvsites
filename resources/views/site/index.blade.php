@@ -23,11 +23,18 @@
 
     <div class="container mt-5">
         <div class="row">
-            @foreach($sites as $site)
+            @forelse($sites as $site)
                 <div class="col-md-4 mb-2">
                     @include('site.card')
                 </div>
-            @endforeach
+            @empty
+                <div class="alert alert-dismissible alert-info text-center">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <strong>Oh 🤔 !</strong><br>
+                    Aucun site ne correspond.<br>
+                    Veuillez réaliser une nouvelle recherche.
+                </div>
+            @endforelse
         </div>
 
         <div class="my-4">
