@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SearchSitesRequest;
+use App\Http\Requests\SiteContactRequest;
+use App\Mail\SiteContactMail;
 use App\Models\Category;
 use App\Models\Site;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Mail;
 
 class SiteController extends Controller
 {
@@ -57,5 +60,18 @@ class SiteController extends Controller
         return view('site.show', [
             'site' => $site
         ]);
+    }
+
+    /**
+     * Récupérer les infos validées de l'utilisateur et les données du site
+     * Envoyer email
+     * @param Site $site
+     * @param SiteContactRequest $request
+     * @return RedirectResponse
+     */
+    public function contact(Site $site, SiteContactRequest $request)
+    {
+        Mail::send(new SiteContactMail($site, $request->validated()));
+        return back()->with('success', 'Votre demande de contact a bien été envoyée à l\'administration du site.');
     }
 }

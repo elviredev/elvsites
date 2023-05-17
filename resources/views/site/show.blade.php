@@ -13,7 +13,9 @@
         <div class="mt-4">
             <h4 class="py-2">Demander des infos sur ce template ?</h4>
 
-            <form action="" method="POST" class="vstack gap-3">
+            @include('shared.flash')
+
+            <form action="{{ route('site.contact', $site) }}" method="POST" class="vstack gap-3">
                 @csrf
                 <div class="row">
                     @include('shared.input', ['class' => 'col', 'name' => 'firstname', 'label' => 'Prénom'])

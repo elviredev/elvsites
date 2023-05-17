@@ -25,6 +25,7 @@ Route::get('/sites/{slug}-{site}', [\App\Http\Controllers\SiteController::class,
     'slug' => $slugRegex,
     'site' => $idRegex
 ]);
+Route::post('/sites/{site}/contact', [\App\Http\Controllers\SiteController::class, 'contact'])->name('site.contact')->where(['site' => $idRegex]);
 
 
 /**
