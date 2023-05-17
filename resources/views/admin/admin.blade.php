@@ -45,6 +45,23 @@
                     <a @class(['nav-link', 'active' => str_contains($route, 'technology.')]) href="{{ route('admin.technology.index') }}" aria-current="page">Technologies</a>
                 </li>
             </ul>
+
+            <div class="ms-auto">
+                @auth
+                    <ul class="navbar-nav">
+                        <li class="nav-link">
+                            {{ \Illuminate\Support\Facades\Auth::user()->name }}
+                        </li>
+                        <li class="nav-item">
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="nav-link">Se Déconnecter</button>
+                            </form>
+                        </li>
+                    </ul>
+                @endauth
+            </div>
         </div>
 
     </div>

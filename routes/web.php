@@ -31,7 +31,17 @@ Route::post('/sites/{site}/contact', [\App\Http\Controllers\SiteController::clas
 /**
  * PARTIE ADMINISTRATION
  */
-Route::prefix('admin')->name('admin.')->group(function () {
+// Authentification
+Route::get('/login', [\App\Http\Controllers\AuthController::class, 'login'])
+    ->middleware('guest')
+    ->name('login');
+Route::post('/login', [\App\Http\Controllers\AuthController::class, 'doLogin']);
+Route::delete('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout');
+
+// Routes Administration
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('site', \App\Http\Controllers\Admin\SiteController::class)->except(['show']);
     Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class)->except(['show']);
     Route::resource('technology', \App\Http\Controllers\Admin\TechnologyController::class)->except(['show']);
