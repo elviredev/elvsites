@@ -1,7 +1,7 @@
 <div class="card mb-3">
 
     @if($site->getPicture())
-        <img src="{{ $site->getPicture()->getImageUrl(360, 230) }}" alt="" class="w-100">
+        <img src="{{ $site->getPicture()->getImageUrl(500, 260) }}" alt="" class="w-100">
     @else
         <img src="/empty.jpg" alt="" class="w-100">
     @endif
