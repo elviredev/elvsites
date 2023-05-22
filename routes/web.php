@@ -40,9 +40,16 @@ Route::delete('/logout', [\App\Http\Controllers\AuthController::class, 'logout']
     ->middleware('auth')
     ->name('logout');
 
+// Glide - Images
+Route::get('images/{path}', [\App\Http\Controllers\ImageController::class, 'show'])
+    ->where('path', '.*');
+
 // Routes Administration
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () use($idRegex) {
     Route::resource('site', \App\Http\Controllers\Admin\SiteController::class)->except(['show']);
     Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class)->except(['show']);
     Route::resource('technology', \App\Http\Controllers\Admin\TechnologyController::class)->except(['show']);
+    Route::delete('picture/{picture}', [\App\Http\Controllers\Admin\PictureController::class, 'destroy'])
+        ->name('picture.destroy')
+        ->where(['picture' => $idRegex]);
 });

@@ -1,4 +1,11 @@
 <div class="card mb-3">
+
+    @if($site->getPicture())
+        <img src="{{ $site->getPicture()->getImageUrl(360, 230) }}" alt="" class="w-100">
+    @else
+        <img src="/empty.jpg" alt="" class="w-100">
+    @endif
+
     <div class="card-body">
         <div class="d-flex justify-content-between align-items-start">
             <h5 class="card-title">

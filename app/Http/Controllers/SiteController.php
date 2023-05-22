@@ -23,7 +23,7 @@ class SiteController extends Controller
      */
     public function index(SearchSitesRequest $request)
     {
-        $query = Site::query()->with('category');
+        $query = Site::query()->with(['category', 'pictures']);
         $categories = Category::query()->get();
 
         if ($request->validated('name')) {

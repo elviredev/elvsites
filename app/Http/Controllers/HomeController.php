@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index()
     {
         $sitesCount = Site::count();
-        $sites = Site::query()->with('category')->orderBy('created_at', 'desc')->limit(6)->get();
+        $sites = Site::query()->with(['category', 'pictures'])->orderBy('created_at', 'desc')->limit(6)->get();
         return view('home', ['sites' => $sites, 'sitesCount' => $sitesCount]);
     }
 }

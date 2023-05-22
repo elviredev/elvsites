@@ -5,41 +5,66 @@
 @section('content')
 
     <div class="container my-4">
-        <h1>{{ $site->name }}</h1>
-        <h2>{{ $site->category?->name }} - {{ $site->year }}</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-sm-12">
+                <div id="carousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 500px;">
+                    <div class="carousel-inner">
+                        @foreach($site->pictures as $k => $picture)
+                            <div class="carousel-item {{ $k === 0 ? 'active' : '' }}">
+                                <img src="{{ $picture->getImageUrl(500, 300) }}" alt="image a la une">
+                            </div>
+                        @endforeach
+                    </div>
 
-        <hr>
-
-        <div class="mt-4">
-            <h4 class="py-2">Demander des infos sur ce template ?</h4>
-
-            @include('shared.flash')
-
-            <form action="{{ route('site.contact', $site) }}" method="POST" class="vstack gap-3">
-                @csrf
-                <div class="row">
-                    @include('shared.input', ['class' => 'col', 'name' => 'firstname', 'label' => 'Prénom'])
-                    @include('shared.input', ['class' => 'col', 'name' => 'lastname', 'label' => 'Nom'])
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
+            </div>
 
-                <div class="row">
-                    @include('shared.input', ['class' => 'col', 'name' => 'phone', 'label' => 'Téléphone'])
-                    @include('shared.input', ['type' => 'email', 'class' => 'col', 'name' => 'email', 'label' => 'Email'])
+            <div class="col-lg-6 col-sm-12 ">
+                <h1 class="mt-lg-0 mt-3">{{ $site->name }}</h1>
+                <h2>{{ $site->category?->name }} - {{ $site->year }}</h2>
+
+                <hr>
+
+                <div class="mt-4">
+                    <h4 class="py-2">Demander des infos sur ce template ?</h4>
+
+                    @include('shared.flash')
+
+                    <form action="{{ route('site.contact', $site) }}" method="POST" class="vstack gap-3">
+                        @csrf
+                        <div class="row">
+                            @include('shared.input', ['class' => 'col', 'name' => 'firstname', 'label' => 'Prénom'])
+                            @include('shared.input', ['class' => 'col', 'name' => 'lastname', 'label' => 'Nom'])
+                        </div>
+
+                        <div class="row">
+                            @include('shared.input', ['class' => 'col', 'name' => 'phone', 'label' => 'Téléphone'])
+                            @include('shared.input', ['type' => 'email', 'class' => 'col', 'name' => 'email', 'label' => 'Email'])
+                        </div>
+
+                        @include('shared.input', ['type' => 'textarea', 'class' => 'col', 'name' => 'message', 'label' => 'Message'])
+
+                        <div>
+                            <button class="btn btn-primary">Me Contacter</button>
+                        </div>
+                    </form>
                 </div>
-
-                @include('shared.input', ['type' => 'textarea', 'class' => 'col', 'name' => 'message', 'label' => 'Message'])
-
-                <div>
-                    <button class="btn btn-primary">Me Contacter</button>
-                </div>
-            </form>
+            </div>
         </div>
 
         <div class="mt-4">
             <p>{!! nl2br($site->description) !!}</p>
 
             <div class="row">
-                <div class="col-8">
+                <div class="col-lg-8 col-sm-12">
                     <h2 class="py-2">Informations</h2>
                     <table class="table table-secondary table-hover table-striped">
                         <tr>
@@ -72,7 +97,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="col-4">
+                <div class="col-lg-4 col-sm-12">
                     <h2 class="py-2">Techno</h2>
                     <ul class="list-group">
                         @foreach($site->technologies as $technology)

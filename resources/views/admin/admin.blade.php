@@ -18,6 +18,15 @@
                 all: unset;
             }
         }
+        .htmx-indicator {
+            display:none;
+        }
+        .htmx-request .htmx-indicator {
+            display:inline-block;
+        }
+        .htmx-request.htmx-indicator {
+            display:inline-block;
+        }
     </style>
 </head>
 <body>
@@ -74,7 +83,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
-<script src="https://unpkg.com/htmx.org@1.8.6"></script>
+<script src="https://unpkg.com/htmx.org@1.9.2"></script>
 
 <script>
     new TomSelect('select[multiple]', {plugins: {remove_button: {title: 'Supprimer'}}})

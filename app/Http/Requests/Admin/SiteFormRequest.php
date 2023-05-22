@@ -31,7 +31,9 @@ class SiteFormRequest extends FormRequest
             'published' => ['required', 'boolean'],
             'github' => ['required', 'boolean'],
             'category_id' => ['required', 'exists:categories,id'],
-            'technologies' => ['required', 'array', 'exists:technologies,id']
+            'technologies' => ['required', 'array', 'exists:technologies,id'],
+            'pictures' => ['array'],
+            'pictures.*' => ['image', 'max:2000']
         ];
     }
 }

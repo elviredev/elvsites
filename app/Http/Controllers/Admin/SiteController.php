@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SiteFormRequest;
 use App\Models\Category;
+use App\Models\Picture;
 use App\Models\Site;
 use App\Models\Technology;
 use Illuminate\Contracts\Foundation\Application;
@@ -56,6 +57,7 @@ class SiteController extends Controller
     {
         $site = Site::create($request->validated());
         $site->technologies()->sync($request->validated('technologies'));
+        $site->attachFiles($request->validated('pictures'));
         return to_route('admin.site.index')->with('success', 'Le site a été créé avec succès 🏅');
     }
 
@@ -82,8 +84,9 @@ class SiteController extends Controller
      */
     public function update(SiteFormRequest $request, Site $site)
     {
-        $site->technologies()->sync($request->validated('technologies'));
         $site->update($request->validated());
+        $site->technologies()->sync($request->validated('technologies'));
+        $site->attachFiles($request->validated('pictures'));
         return to_route('admin.site.index')->with('success', 'Le site a été modifié avec succès 💪');
     }
 
@@ -92,6 +95,10 @@ class SiteController extends Controller
      */
     public function destroy(Site $site)
     {
+        // Supprimer les images associées au site
+        Picture::destroy($site->pictures()->pluck('id'));
+
+        // Supprimer le site
         $site->delete();
         return to_route('admin.site.index')->with('success', 'Le site a été supprimé avec succès 🗑️');
     }
