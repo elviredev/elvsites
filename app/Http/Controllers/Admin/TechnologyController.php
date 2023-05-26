@@ -12,6 +12,11 @@ use Illuminate\Http\RedirectResponse;
 
 class TechnologyController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Technology::class, 'technology');
+    }
+
     /**
      * Display a listing of the resource.
      * @return Application|Factory|View|\Illuminate\Foundation\Application

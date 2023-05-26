@@ -16,6 +16,11 @@ use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Site::class, 'site');
+    }
+
     /**
      * Display a listing of the resource.
      * @return Application|Factory|View|\Illuminate\Foundation\Application

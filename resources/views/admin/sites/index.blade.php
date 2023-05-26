@@ -6,7 +6,9 @@
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1>@yield('title')</h1>
+        @if(Auth::user()->role === 'admin')
         <a href="{{ route('admin.site.create') }}" class="btn btn-primary">Ajouter un site</a>
+        @endif
     </div>
 
     <table class="table table-striped table-dark">
@@ -16,7 +18,9 @@
                 <th>Description</th>
                 <th>Année</th>
                 <th>Catégorie</th>
+                @if(Auth::user()->role === 'admin')
                 <th class="text-end">Actions</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -30,11 +34,13 @@
                             {{ $site->category?->name }}
                         @endif
                     </td>
+                    @can("delete", $site)
                     <td>
                         <div class="d-flex gap-2 w-100 justify-content-end">
                             <a href="{{ route('admin.site.edit', $site) }}" class="btn btn-info">
                                 <i class="fas fa-pen-to-square"></i>
                             </a>
+
                             <form action="{{ route('admin.site.destroy', $site) }}" method="POST">
                                 @csrf
                                 @method("DELETE")
@@ -44,6 +50,7 @@
                             </form>
                         </div>
                     </td>
+                    @endcan
                 </tr>
             @endforeach
         </tbody>
