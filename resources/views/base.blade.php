@@ -52,7 +52,7 @@
         <img class="w-50" src="{{asset('logo-gray.png')}}" alt="logo ews">
     </div>
     <div class="fs-5">
-        &copy; elvirewebsite.fr | 2023
+        &copy; elvirewebsite.com | 2023
     </div>
 
 </div>
