@@ -6,7 +6,7 @@
 
     <div class="bg-dark p-5 mb-5 text-center">
         <div class="container">
-            <h1 class="text-primary p-2">ElvireDev Sites Web</h1>
+            <h1 class="text-primary p-2">Mes templates pour sites web</h1>
             <p>Voici les sites web que j'ai réalisé depuis deux ans et demi. Il s'agit de sites personnels, les modèles peuvent être utilisés pour créer de nouveaux sites. <br>Conception Frontend et Backend. Les langages de programmation sont Html, Css/Sass, JavaScript, PHP. Méthodologie MVC pour le backend. <br>Les frameworks, plugins utilisés pour certaines applications sont Laravel, FilamentPHP, LiveWire, AlpineJS, Symfony.</p>
 
             <ul class="nav nav-pills justify-content-center p-3">
