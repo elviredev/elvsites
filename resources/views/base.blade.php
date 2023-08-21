@@ -47,6 +47,16 @@
 </nav>
 @yield('content')
 
+<div class="d-flex flex-column flex-md-row p-4 mt-4 align-items-center justify-content-center border-top border-primary text-center">
+    <div class=" mb-3">
+        <img class="w-50" src="{{asset('logo-gray.png')}}" alt="logo ews">
+    </div>
+    <div class="fs-5">
+        &copy; elvirewebsite.fr | 2023
+    </div>
+
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/htmx.org@1.8.6"></script>
 

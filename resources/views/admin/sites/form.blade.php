@@ -11,8 +11,8 @@
         @csrf
         @method($site->exists ? 'PUT' : 'POST')
 
-        <div class="row">
-            <div class="col vstack gap-2" style="flex: 100">
+        <div class="row d-flex flex-column flex-md-row">
+            <div class="col-md-4 gap-2 flex-grow-1 h-100">
                 @include('shared.input', ['class' => 'col', 'label' => 'Nom du site', 'name' => 'name', 'value' => $site->name])
 
                 <div class="col row gap-2">
@@ -28,14 +28,14 @@
                     @include('shared.checkbox', ['class' => 'col-md-2 col-sm-12 ms-3', 'label' => 'Github', 'name' => 'github', 'value' => $site->github])
                 </div>
 
-                <div class="col-lg-6 col-md-12 row mt-3">
+                <div class="col-lg-6 col-md-12 row my-3">
                     @include('shared.select', ['class' => 'd-flex gap-2 ', 'name' => 'category_id', 'label' => 'Catégories', 'value' => $site->category()->pluck('id'), 'options' => $categories])
                 </div>
 
                 @include('shared.select-multiple', ['name' => 'technologies', 'label' => 'Technologies', 'value' => $site->technologies()->pluck('id'), 'multiple' => true, 'options' => $technologies])
 
                 <div>
-                    <button class="btn btn-primary mt-2">
+                    <button class="btn btn-primary mt-3">
                         @if($site->exists)
                             Modifier
                         @else
@@ -45,12 +45,12 @@
                 </div>
             </div>
 
-            <div class="col vstack gap-3 mt-3" style="flex: 25">
+            <div class="col-md-3 gap-3 mt-3  ">
                 @foreach($site->pictures as $picture)
                     <div id="picture{{ $picture->id }}" class="position-relative">
                         <img src="{{ $picture->getImageUrl(360, 230) }}" alt="" class="w-100 d-block">
                         <button type="button"
-                                class="btn btn-danger position-absolute bottom-0 start-0 w-100"
+                                class="btn btn-danger position-absolute bottom-0 start-0 w-100 py-1"
                                 hx-delete="{{ route('admin.picture.destroy', $picture) }}"
                                 hx-target="#picture{{ $picture->id }}"
                                 hx-swap="delete"

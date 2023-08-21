@@ -11,7 +11,7 @@
         @endif
     </div>
 
-    <table class="table table-striped table-dark">
+    <table class="table table-striped table-dark table-responsive-md fs-6">
         <thead>
             <tr>
                 <th>Nom</th>
