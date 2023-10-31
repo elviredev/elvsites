@@ -27,6 +27,7 @@ jobs:
         with:
           node-version: 'latest'
           cache: 'yarn'
+          cache-dependency-path: subdir/package-lock.json
 
       - name: Install JS dependencies
         run: yarn install --frozen-lockfile
