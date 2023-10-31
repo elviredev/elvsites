@@ -48,7 +48,7 @@
             <div class="col-md-3 gap-3 mt-3  ">
                 @foreach($site->pictures as $picture)
                     <div id="picture{{ $picture->id }}" class="position-relative">
-                        <img src="{{ $picture->getImageUrl(360, 230) }}" alt="" class="w-100 d-block">
+                        <img src="{{ $picture->getImageUrl(360, 230) }}" alt="" class="w-100 d-block mt-2">
                         <button type="button"
                                 class="btn btn-danger position-absolute bottom-0 start-0 w-100 py-1"
                                 hx-delete="{{ route('admin.picture.destroy', $picture) }}"

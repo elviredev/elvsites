@@ -22,7 +22,7 @@
         </p>
 
         @if($site->category)
-            <div class="text-info fw-bold">
+            <div class="text-light fw-bold">
             {{ $site->category?->name }}
             </div>
         @endif

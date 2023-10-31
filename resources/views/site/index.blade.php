@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="bg-primary p-5 mb-5 text-center">
-        <form action="" method="GET" class="container d-flex gap-2">
+        <form action="" method="GET" class="container d-flex gap-2 flex-column flex-sm-row">
             <input type="text" placeholder="Mot clé" class="form-control" name="name" value="{{ $input['name'] ?? '' }}">
             <input type="number" placeholder="Année" class="form-control" name="year" value="{{ $input['year'] ?? '' }}">
             <select class="form-select" name="category" id="category" >

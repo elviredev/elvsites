@@ -10,20 +10,20 @@
         <a href="{{ route('admin.site.create') }}" class="btn btn-primary">Ajouter un site</a>
         @endif
     </div>
-
-    <table class="table table-striped table-dark table-responsive-md fs-6">
-        <thead>
+    <div class="table-responsive-md">
+        <table class="table table-striped table-dark fs-6">
+            <thead>
             <tr>
                 <th>Nom</th>
                 <th>Description</th>
                 <th>Année</th>
                 <th>Catégorie</th>
                 @if(Auth::user()->role === 'admin')
-                <th class="text-end">Actions</th>
+                    <th class="text-end">Actions</th>
                 @endif
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             @foreach($sites as $site)
                 <tr>
                     <td>{{ $site->name }}</td>
@@ -35,26 +35,28 @@
                         @endif
                     </td>
                     @can("delete", $site)
-                    <td>
-                        <div class="d-flex gap-2 w-100 justify-content-end">
-                            <a href="{{ route('admin.site.edit', $site) }}" class="btn btn-info">
-                                <i class="fas fa-pen-to-square"></i>
-                            </a>
+                        <td>
+                            <div class="d-flex gap-2 w-100 justify-content-end">
+                                <a href="{{ route('admin.site.edit', $site) }}" class="btn btn-info">
+                                    <i class="fas fa-pen-to-square"></i>
+                                </a>
 
-                            <form action="{{ route('admin.site.destroy', $site) }}" method="POST">
-                                @csrf
-                                @method("DELETE")
-                                <button class="btn btn-danger" onclick="return confirm('Voulez-vous supprimer ce site ?')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </td>
+                                <form action="{{ route('admin.site.destroy', $site) }}" method="POST">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button class="btn btn-danger" onclick="return confirm('Voulez-vous supprimer ce site ?')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
                     @endcan
                 </tr>
             @endforeach
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+
 
     {{-- Pagination --}}
     {{ $sites->links() }}
