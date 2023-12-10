@@ -28,7 +28,7 @@ class SiteContactMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            to: 'admin@monsite.fr',
+            to: 'contact@elvirewebsite.fr',
             replyTo: $this->data['email'],
             subject: 'ElvSites Contact Mail'
         );
