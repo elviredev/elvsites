@@ -40,7 +40,7 @@ class SiteController extends Controller
     {
         $site = new Site();
         $site->fill([
-            'year' => 2023,
+            'year' => 2024,
             'client' => 'Personnel',
             'published' => false,
             'github' => false

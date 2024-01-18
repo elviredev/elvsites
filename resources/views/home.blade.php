@@ -6,8 +6,8 @@
 
     <div class="bg-dark p-5 mb-5 text-center">
         <div class="container">
-            <h1 class="text-primary p-2">Mes templates pour sites web</h1>
-            <p>Voici les sites web que j'ai réalisé depuis deux ans et demi. Il s'agit de sites personnels, les modèles peuvent être utilisés pour créer de nouveaux sites. <br>Conception Frontend et Backend. Les langages de programmation sont Html, Css/Sass, JavaScript, PHP. Méthodologie MVC pour le backend. <br>Les frameworks, plugins utilisés pour certaines applications sont Laravel 10, FilamentPHP, LiveWire, AlpineJS, Vue 3, Tailwind, Bootstrap, Bulma.</p>
+            <h1 class="text-primary p-2">Mes modèles pour sites web</h1>
+            <p class="lh-base">Voici les sites web que j'ai réalisé depuis trois ans. Il s'agit de sites personnels, les modèles peuvent être utilisés pour créer de nouveaux sites. <br>Conception Frontend et Backend. Les langages de programmation sont Html, Css/Sass, JavaScript, PHP. Méthodologie MVC pour le backend. <br>Les frameworks, plugins utilisés pour certaines applications sont Laravel 10, FilamentPHP, LiveWire, AlpineJS, Vue 3, Tailwind, Bootstrap, Bulma.</p>
 
             <ul class="nav nav-pills justify-content-center p-3">
                 <li class="nav-item">

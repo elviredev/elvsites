@@ -7,11 +7,11 @@
     <div class="container my-4">
         <div class="row align-items-center">
             <div class="col-lg-6 col-sm-12">
-                <div id="carousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 500px;">
+                <div id="carousel" class="carousel slide w-100" data-bs-ride="carousel" style="max-width: 520px;">
                     <div class="carousel-inner">
                         @foreach($site->pictures as $k => $picture)
                             <div class="carousel-item {{ $k === 0 ? 'active' : '' }}">
-                                <img src="{{ $picture->getImageUrl(500, 300) }}" alt="image a la une">
+                                <img class="img-fluid" src="{{ $picture->getImageUrl(520, 350) }}" alt="image a la une">
                             </div>
                         @endforeach
                     </div>
